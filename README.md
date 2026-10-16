@@ -1,7 +1,11 @@
 # flclash-UI
 
 FlClash 配置页 UI 定制：**连体按钮（筛选|排序）** 与 **标题「配置」的定位/回顶/到底交互**。
-本仓库是这套 UI 改动的源码、交互规格说明与构建管线镜像。
+本仓库是这套 UI 改动的源码与覆盖层，**不是独立 Flutter 完整工程**。
+
+**当前稳定版：[FlClash A01](https://github.com/oh5uosnvh/flclash-UI/releases/tag/A01)** · [来源、集成和验证清单](docs/A01.md) · 稳定分支 `release/A01`。
+
+A01 固定已验收的 build 12 行为：VT 用户 token 修复、OPPA 纯 IP 连接修复、新增配置自动到底、长按后 500ms 平滑到底。
 
 ## 交互规格（标题「配置」二字）
 
@@ -36,10 +40,7 @@ FlClash 配置页 UI 定制：**连体按钮（筛选|排序）** 与 **标题�
 
 ## 构建管线
 
-`.github/workflows/manual-build.yaml` 与 flclash-private 工程同款：
-workflow_dispatch（platform: android/both/windows，kernel_ref 默认 `mods`），
-内核 = `oh5uosnvh/clash-meta-mods@mods`（含 x365 / 黑石 xhttp / anytls /
-viewTurbo / oppa 私有协议），构建后自动校验协议标记并发布 Release。
+正式构建在完整宿主 `oh5uosnvh/flclash-private` 的 `release/A01` 执行；UI 仓库的工作流只提供明确的集成说明，避免在缺少 pubspec/完整源码的覆盖层上误打包。宿主默认固定已验证内核提交，并启用源码检查门禁。统一正式安装包发布在本仓库 A01 Release。
 
 ## 相关仓库
 
