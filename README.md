@@ -34,15 +34,19 @@ FlClash 配置页 UI 定制：**连体按钮（筛选|排序）** 与 **标题�
 `lib/l10n/intl/messages_*.dart` 增加 `profilesLocateHidden` /
 `profilesLocateNone` 两条文案（各语言值见 flclash-private 工程）。
 
-## 构建管线
+## 构建联动
 
-`.github/workflows/manual-build.yaml` 与 flclash-private 工程同款：
-workflow_dispatch（platform: android/both/windows，kernel_ref 默认 `mods`），
-内核 = `oh5uosnvh/clash-meta-mods@mods`（含 x365 / 黑石 xhttp / anytls /
-viewTurbo / oppa 私有协议），构建后自动校验协议标记并发布 Release。
+本仓库是 UI 源码与交互规格的维护仓库。发布构建由
+`oh5uosnvh/flclash-private` 统一执行；构建前会校验 UI 活动文件、协议活动仓库和内核来源，构建后执行源码测试、静态分析、平台打包与协议标记校验。
+
+UI 集成范围：
+
+- `lib/views/profiles/` 配置页交互与标题定位；
+- 配置卡片菜单、延迟测试状态和弹窗交互由客户端活动源码维护；
+- 归档目录仅供历史查阅，不参与构建。
 
 ## 相关仓库
 
-- `oh5uosnvh/flclash-private` — 完整可构建工程（本仓库文件的宿主）
-- `oh5uosnvh/clash-meta-mods` — 私有协议内核（mods 分支）
-- `oh5uosnvh/flclash-MG` — 各协议补丁与归档
+- `oh5uosnvh/flclash-private` — 最终客户端与统一构建入口；
+- `oh5uosnvh/clash-meta-mods` — 协议内核；
+- `oh5uosnvh/flclash-MG` — 协议源码镜像、测试与构建资料。
